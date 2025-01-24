@@ -16,7 +16,6 @@
 package co.aospa.android.customization.model.iconshape;
 
 import static com.android.customization.model.ResourceConstants.ANDROID_PACKAGE;
-import static com.android.customization.model.ResourceConstants.CONFIG_CORNERRADIUS;
 import static com.android.customization.model.ResourceConstants.CONFIG_ICON_MASK;
 import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_SHAPE;
 import static com.android.customization.model.ResourceConstants.PATH_SIZE;
@@ -85,8 +84,7 @@ public class IconShapeOptionProvider {
                 PackageManager pm = mContext.getPackageManager();
                 String label = pm.getApplicationInfo(overlayPackage, 0).loadLabel(pm).toString();
                 mOptions.add(new IconShapeOption(overlayPackage, label, path,
-                        loadCornerRadius(overlayPackage), createShapeDrawable(path),
-                        getShapedAppIcons(path)));
+                        createShapeDrawable(path), getShapedAppIcons(path)));
             } catch (NameNotFoundException | NotFoundException e) {
                 Log.w(TAG, String.format("Couldn't load shape overlay %s, will skip it",
                         overlayPackage), e);
@@ -98,9 +96,6 @@ public class IconShapeOptionProvider {
         Resources system = Resources.getSystem();
         Path path = loadPath(system, ANDROID_PACKAGE);
         mOptions.add(new IconShapeOption(null, mContext.getString(R.string.default_theme_title), path,
-                system.getDimensionPixelOffset(
-                        system.getIdentifier(CONFIG_CORNERRADIUS,
-                                "dimen", ResourceConstants.ANDROID_PACKAGE)),
                 createShapeDrawable(path), getShapedAppIcons(path)));
     }
 
@@ -149,16 +144,4 @@ public class IconShapeOptionProvider {
         }
         return null;
     }
-
-    @Dimension
-    private int loadCornerRadius(String packageName)
-            throws NameNotFoundException, NotFoundException {
-
-        Resources overlayRes =
-                mContext.getPackageManager().getResourcesForApplication(
-                        packageName);
-        return overlayRes.getDimensionPixelOffset(overlayRes.getIdentifier(
-                CONFIG_CORNERRADIUS, "dimen", packageName));
-    }
-
 }
