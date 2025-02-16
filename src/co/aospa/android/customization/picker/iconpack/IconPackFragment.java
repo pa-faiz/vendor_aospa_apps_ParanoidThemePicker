@@ -34,8 +34,6 @@ import com.android.customization.model.CustomizationManager.Callback;
 import com.android.customization.model.CustomizationManager.OptionsFetchedListener;
 import com.android.customization.model.CustomizationOption;
 import com.android.customization.model.theme.OverlayManagerCompat;
-import com.android.customization.module.ThemesUserEventLogger;
-import com.android.customization.picker.WallpaperPreviewer;
 import com.android.wallpaper.R;
 import com.android.wallpaper.picker.AppbarFragment;
 import com.android.wallpaper.widget.BottomActionBar;

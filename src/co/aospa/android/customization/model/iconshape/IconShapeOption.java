@@ -33,7 +33,6 @@ import android.widget.ImageView;
 
 import androidx.core.graphics.ColorUtils;
 
-import com.android.customization.model.theme.ThemeBundle;
 import com.android.wallpaper.R;
 import com.android.wallpaper.util.ResourceUtils;
 
@@ -41,27 +40,32 @@ import com.android.customization.model.CustomizationManager;
 import com.android.customization.model.CustomizationOption;
 import com.android.customization.model.theme.OverlayManagerCompat;
 
+import co.aospa.android.customization.model.theme.ShapeAppIcon;
+
 import java.util.List;
 import java.util.Objects;
 
 public class IconShapeOption implements CustomizationOption<IconShapeOption> {
 
     private final Drawable mShape;
-    private final List<ThemeBundle.PreviewInfo.ShapeAppIcon> mAppIcons;
+    private final List<ShapeAppIcon> mAppIcons;
     private final String mTitle;
     private final String mOverlayPackage;
     private final Path mPath;
+    private final int mCornerRadius;
     private int[] mShapeIconIds = {
             R.id.shape_preview_icon_0, R.id.shape_preview_icon_1, R.id.shape_preview_icon_2,
             R.id.shape_preview_icon_3, R.id.shape_preview_icon_4, R.id.shape_preview_icon_5
     };
 
-    public IconShapeOption(String packageName, String title, Path path, Drawable shapeDrawable,
-                           List<ThemeBundle.PreviewInfo.ShapeAppIcon> appIcons) {
+    public IconShapeOption(String packageName, String title, Path path,
+                           @Dimension int cornerRadius, Drawable shapeDrawable,
+                           List<ShapeAppIcon> appIcons) {
         mOverlayPackage = packageName;
         mTitle = title;
         mAppIcons = appIcons;
         mPath = path;
+        mCornerRadius = cornerRadius;
         mShape = shapeDrawable.getConstantState().newDrawable();
     }
 
