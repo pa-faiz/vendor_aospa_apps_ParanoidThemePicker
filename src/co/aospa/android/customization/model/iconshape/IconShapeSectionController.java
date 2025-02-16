@@ -81,7 +81,7 @@ public class IconShapeSectionController implements CustomizationSectionControlle
         }, /* reload= */ true);
 
         iconShapeSectionView.setOnClickListener(v -> mSectionNavigationController.navigateTo(
-                IconShapeFragment.newInstance(context.getString(R.string.preview_name_shape))));
+                IconShapeFragment.newInstance(context.getString(R.string.icon_shape_title))));
 
         return iconShapeSectionView;
     }
